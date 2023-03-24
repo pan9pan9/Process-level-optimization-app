@@ -8,11 +8,22 @@ void main() {
 
 }
 
+
 class Login extends StatelessWidget {
   const Login({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController idcontroller = TextEditingController();
+    final TextEditingController pwcontroller = TextEditingController();
+    final ButtonStyle style = ElevatedButton.styleFrom(
+        textStyle: const TextStyle(fontSize: 15),
+        minimumSize: Size(100, 50));
+
+    
+    bool isFactoreal = false;
+
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
@@ -35,8 +46,8 @@ class Login extends StatelessWidget {
                   Container(
                       margin: EdgeInsets.only(top: 30),
                       child: TextFormField(
+                        controller: idcontroller,
                         keyboardType: TextInputType.emailAddress,
-                        initialValue: 'factoreal',
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                         ),
@@ -44,35 +55,49 @@ class Login extends StatelessWidget {
                   Container(
                       margin: EdgeInsets.only(top: 8, bottom: 16),
                       child: TextFormField(
+                        controller: pwcontroller,
                         obscureText: true,
-                        initialValue: 'factoreal',
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                         ),
                       )),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
                       ElevatedButton(
+                        style: style,
                         child: Text("Login"),
                         onPressed: (){
-                          Navigator.push(
+                          if(idcontroller.text == 'factoreal' && pwcontroller.text == 'factoreal'){
+                              isFactoreal = true;
+                          }
+                          else {
+                            isFactoreal = false;
+                          }
+                          if(isFactoreal){
+                            Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => const Pairing())
                           );
+                          }
+                          else{
+                            showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text('ID, PW가 틀렸습니다.'),
+                              actions: [
+                                TextButton(
+                                  child: const Text('확인'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                          }
+                          
                         },
                       ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      ElevatedButton(
-                        child: Text("Cancel"),
-                        onPressed: (){
-                          Navigator.pop(context);
-                        },
-                      )
-                    ],
-                  )
                 ],
               ),
             )));
