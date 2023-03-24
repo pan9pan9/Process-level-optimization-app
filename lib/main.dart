@@ -77,7 +77,7 @@ class Login extends StatelessWidget {
                           if(isFactoreal){
                             Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const Pairing())
+                            MaterialPageRoute(builder: (context) => Pairing())
                           );
                           }
                           else{
@@ -104,67 +104,5 @@ class Login extends StatelessWidget {
                 ],
               ),
             )));
-  }
-}
-
-class Pairing extends StatelessWidget {
-  const Pairing({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bluetooth Pairing'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const Selectmode())
-            );
-          },
-          child: const Text('Pairing'),
-        ),
-      ),
-    );
-  }
-}
-
-class Selectmode extends StatelessWidget {
-  const Selectmode({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Select mode'),
-      ),
-      body: Center(
-         child:Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              child: Text("입고"),
-              onPressed: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Pairing())
-                );
-              },
-            ),
-            SizedBox(
-              width: 8,
-            ),
-            ElevatedButton(
-              child: Text("출고"),
-              onPressed: (){
-                Navigator.pop(context);
-              },
-            )
-          ],
-        )
-      ) 
-    );
   }
 }

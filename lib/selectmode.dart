@@ -19,7 +19,7 @@ class Selectmode extends StatelessWidget {
               onPressed: (){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Pairing())
+                  MaterialPageRoute(builder: (context) => Pairing())
                 );
               },
             ),
