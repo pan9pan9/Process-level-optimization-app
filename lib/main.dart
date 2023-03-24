@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pairing.dart';
 
 void main() {
     runApp(const MaterialApp(
@@ -50,6 +51,7 @@ class Login extends StatelessWidget {
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
+                          hintText: 'Id'
                         ),
                       )),
                   Container(
@@ -59,6 +61,7 @@ class Login extends StatelessWidget {
                         obscureText: true,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
+                          hintText: 'Password'
                         ),
                       )),
                       ElevatedButton(
